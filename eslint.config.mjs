@@ -1,0 +1,42 @@
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import prettier from 'eslint-config-prettier';
+
+export default tseslint.config(
+  js.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['vitest.config.ts', 'eslint.config.mjs'],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
+    rules: {
+      'no-restricted-properties': [
+        'error',
+        { property: 'innerHTML', message: 'Используй DOM API (createElement, textContent).' },
+        { property: 'outerHTML', message: 'Используй DOM API.' },
+      ],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "CallExpression[callee.property.name='insertAdjacentHTML']",
+          message: 'insertAdjacentHTML запрещён заданием.',
+        },
+      ],
+    },
+  },
+  {
+    files: ['tests/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off',
+    },
+  },
+  prettier,
+);
