@@ -10,7 +10,7 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['vitest.config.ts', 'eslint.config.mjs'],
+          allowDefaultProject: ['vitest.config.ts', 'eslint.config.mjs', 'tests/debounce.test.ts'],
         },
         tsconfigRootDir: import.meta.dirname,
       },
@@ -30,6 +30,14 @@ export default tseslint.config(
           message: 'insertAdjacentHTML запрещён заданием.',
         },
       ],
+       '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
     },
   },
   {
