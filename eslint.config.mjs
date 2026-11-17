@@ -15,6 +15,7 @@ export default tseslint.config(
             'eslint.config.mjs',
             'tests/debounce.test.ts',
             'tests/mapCountryResponse.test.ts',
+            'tests/errors.test.ts'
           ],
         },
         tsconfigRootDir: import.meta.dirname,
