@@ -10,7 +10,12 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['vitest.config.ts', 'eslint.config.mjs', 'tests/debounce.test.ts'],
+          allowDefaultProject: [
+            'vitest.config.ts',
+            'eslint.config.mjs',
+            'tests/debounce.test.ts',
+            'tests/mapCountryResponse.test.ts',
+          ],
         },
         tsconfigRootDir: import.meta.dirname,
       },
