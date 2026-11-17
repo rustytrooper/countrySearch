@@ -1,20 +1,25 @@
 export class HttpError extends Error {
   readonly status: number;
-  constructor(_status: number, _message?: string) {
-    super();
-    this.status = _status;
-    throw new Error('not implemented');
+
+  constructor(status: number, message?: string) {
+    super(message ?? `HTTP error ${String(status)}`);
+    this.name = 'HttpError';
+    this.status = status;
   }
 }
-export function isAbortError(_e: unknown): boolean {
-  throw new Error('not implemented');
+
+export function isAbortError(error: unknown): boolean {
+  return error instanceof DOMException && error.name === 'AbortError';
 }
-export function isTimeoutError(_e: unknown): boolean {
-  throw new Error('not implemented');
+
+export function isTimeoutError(error: unknown): boolean {
+  return error instanceof DOMException && error.name === 'TimeoutError';
 }
-export function isHttpError(_e: unknown): _e is HttpError {
-  throw new Error('not implemented');
+
+export function isHttpError(error: unknown): error is HttpError {
+  return error instanceof HttpError;
 }
-export function isNetworkError(_e: unknown): boolean {
-  throw new Error('not implemented');
+
+export function isNetworkError(error: unknown): boolean {
+  return error instanceof TypeError;
 }

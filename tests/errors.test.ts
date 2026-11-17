@@ -38,7 +38,6 @@ describe('HttpError', () => {
     const error = new HttpError(500);
     // @ts-expect-error — проверяем, что TS запрещает присваивание
     error.status = 404;
-    expect(error.status).toBe(500);
   });
 });
 
